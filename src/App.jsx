@@ -1,5 +1,4 @@
-
-
+import React, { useEffect } from "react";
 
 // Components
 import { TodoCounter } from "./components/TodoCounter";
@@ -14,6 +13,8 @@ const todosService = new TodosService();
 const todos = todosService.getTodos();
 
 function App() {
+
+  
   return (
       <div className="container app">
         <h2 class="text-center">Todo<strong>App</strong></h2>
