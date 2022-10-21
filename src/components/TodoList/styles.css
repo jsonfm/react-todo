@@ -1,0 +1,11 @@
+h4 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px;
+}
