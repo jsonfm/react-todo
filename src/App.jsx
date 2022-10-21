@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 
 // Components
-import { TodoCounter } from "./components/TodoCounter";
-import { TodoSearch } from "./components/TodoSearch";
-import { TodoList } from "./components/TodoList";
-import { TodoItem } from "./components/TodoItem";
+import { TodoCounter } from "@/components/TodoCounter";
+import { TodoSearch } from "@/components/TodoSearch";
+import { TodoList } from "@/components/TodoList";
+import { TodoItem } from "@/components/TodoItem";
 
 // Services
-import { TodosService } from "./services/TodosService";
+import { TodosService } from "@/services/TodosService";
 
 const todosService = new TodosService();
 const todos = todosService.getTodos();
