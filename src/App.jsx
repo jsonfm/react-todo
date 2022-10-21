@@ -20,10 +20,12 @@ function App() {
   const onSearch = (e) => {
     const query = e.target.value;
     const results = todosService.search(query);
+    console.log("results: ", results);
+    setTodos(results);
   }
 
   const renderTodos = () => {
-    if(todos.length > 1){
+    if(todos.length > 0){
       return todos.map((todo, index) => <TodoItem {...todo} key={`todo-${index}`}/>)
     }
     return <TodosListSkeleton/>
