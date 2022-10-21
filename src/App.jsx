@@ -12,7 +12,6 @@ import { TodosListSkeleton } from "@/skeletons/TodosListSkeleton";
 import { TodosService } from "@/services/TodosService";
 
 const todosService = new TodosService();
-// const todos = todosService.getTodos();
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -20,13 +19,28 @@ function App() {
   const onSearch = (e) => {
     const query = e.target.value;
     const results = todosService.search(query);
-    console.log("results: ", results);
     setTodos(results);
+  }
+
+  const onDelete = (text) => {
+    todosService.delete(text);
+    setTodos(todosService.getTodos());
+  }
+
+  const onComplete = (text) => {
+    todosService.toggleCompletedState(text);
+    setTodos(todosService.getTodos());
   }
 
   const renderTodos = () => {
     if(todos.length > 0){
-      return todos.map((todo, index) => <TodoItem {...todo} key={`todo-${index}`}/>)
+      return todos.map((todo, index) => 
+      <TodoItem 
+        {...todo} 
+        key={`todo-${index}`} 
+        onDelete={onDelete}
+        onComplete={onComplete}
+      />)
     }
     return <TodosListSkeleton/>
   }

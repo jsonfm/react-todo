@@ -13,6 +13,15 @@
     transform: scale(1.02);
 }
 
+.task.completed {
+    background: white;
+    color: var(--orange);
+}
+
+.task.completed p {
+    text-decoration: line-through;
+}
+
 .task p {
     width: 100%;
 }

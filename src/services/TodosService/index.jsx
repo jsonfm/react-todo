@@ -1,6 +1,6 @@
 const todos = [
     {
-      text: 'Cortar cebolla',
+      text: 'Aprender Javascript',
       completed: true,
     },
     {
@@ -8,7 +8,7 @@ const todos = [
       completed: false,
     },
     {
-      text: 'Llorar con la llorona',
+      text: 'Diseñar páginar web',
       completed: true,
     },
 ]
@@ -28,23 +28,30 @@ export class TodosService {
     }
 
     getTodos() {
-        return this.todos;
+        return [...this.todos];
     }
 
     getCompletedTodos() {
         return this.todos.filter(todo => todo.completed);
     }
 
+    findByText(text) {
+      return this.todos.findIndex(todo => todo.text === text);
+    }
+
     search(query) {
         return this.todos.filter(({ text }) => text.toLowerCase().includes(query.toLowerCase()));
     }
 
-    update(){
-      return;
+    toggleCompletedState(text){
+      const taskIndex = this.findByText(text);
+      this.todos[taskIndex].completed = !this.todos[taskIndex].completed;
     }
 
-    delete(id){
-      return;
+
+    delete (text) {
+      const taskIndex = this.findByText(text);
+      this.todos.splice(taskIndex, 1);
     }
 
 }
