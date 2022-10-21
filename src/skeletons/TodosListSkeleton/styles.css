@@ -1,0 +1,29 @@
+
+
+.todo-list .loading {
+    background: var(--orange);
+    height: 3.5rem;
+    position: relative;
+    /* padding: 1rem 2rem; */
+}
+
+.todo-list .loading::after {
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: .8rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    animation: sk-animation 1s infinite ease-in-out;
+}
+
+@keyframes sk-animation {
+    0%, 100% {
+        background: rgb(214, 214, 214);
+    }
+    50% {
+        background: white;
+    }
+}

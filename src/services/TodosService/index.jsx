@@ -23,7 +23,7 @@ export class TodosService {
     }
 
     async fetchTodos(delay=1000){
-      await sleep(delay);
+      await this.sleep(delay);
       return this.todos;
     }
 
@@ -36,7 +36,7 @@ export class TodosService {
     }
 
     search(query) {
-        return this.todos.filter(todo => todo.toLowerCase().includes(query.toLowerCase()));
+        return this.todos.filter(({ text }) => text.toLowerCase().includes(query.toLowerCase()));
     }
 
     update(){

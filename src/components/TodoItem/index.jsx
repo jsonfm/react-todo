@@ -3,7 +3,7 @@ import "./styles.css";
 
 export const TodoItem = ({ text, completed }) => {
     return(
-        <div class="task">
+        <div className="task">
             {completed}
             <p>{text}</p>
         </div>

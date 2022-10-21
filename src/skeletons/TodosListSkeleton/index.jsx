@@ -1,12 +1,14 @@
 import "./styles.css";
 
-export const TodoListSkeleton = ({ children }) => {
+export const TodosListSkeleton = ({ components=3 }={}) => {
+
+    const renderComponents = () => {
+        return [...Array(components)].map((v, index) => <div className="loading" key={`sk-${index}`}></div>)
+    }
+
     return(
         <>
-        <h4>Your tasks:</h4>
-        <div class="todo-list">
-            <div class="loading"></div>
-        </div>
+            {renderComponents()}
         </>
     )
 }

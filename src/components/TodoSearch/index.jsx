@@ -1,16 +1,10 @@
 import "./styles.css";
 import { UilSearch } from '@iconscout/react-unicons';
 
-export const TodoSearch = ({ text }) => {
-
-    const handleSearch = (e) => {
-        const searchValue = e.target.value;
-        console.log(searchValue);
-    }
-
+export const TodoSearch = ({ text, onSearch }) => {
     return(
-        <div class="search-container">
-            <input type="search" onChange={handleSearch}/>
+        <div className="search-container">
+            <input type="search" onChange={onSearch}/>
             <UilSearch/>
         </div>
     )
