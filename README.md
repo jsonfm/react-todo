@@ -11,11 +11,13 @@
 A todos app made with React.JS and CSS styles.
 
 ### Install
+
 ```
 npm run install
 ```
 
 ### Dev
+
 ```
 npm run dev
 ```

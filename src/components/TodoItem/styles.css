@@ -1,42 +1,41 @@
-
 .task {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-    background: var(--orange);
-    padding: 1rem 2rem;
-    min-height: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  background: var(--orange);
+  padding: 1rem 2rem;
+  min-height: 3.5rem;
 }
 
 .task:hover {
-    transform: scale(1.02);
+  transform: scale(1.02);
 }
 
 .task.completed {
-    background: white;
-    color: var(--orange);
+  background: white;
+  color: var(--orange);
 }
 
 .task.completed p {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
 
 .task p {
-    width: 100%;
+  width: 100%;
 }
 
 .task .check,
 .task .trash {
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border-radius: 50%;
 }
 
 .task .trash:hover {
-    /* border-radius: 50%; */
-    background: white;
-    color: var(--orange);
-    transition: .1s;
+  /* border-radius: 50%; */
+  background: white;
+  color: var(--orange);
+  transition: 0.1s;
 }

@@ -10,39 +10,33 @@ import { TodosListSkeleton } from "@/skeletons/TodosListSkeleton";
 
 import { TodosContext } from "@/store/context";
 
-
 function App() {
-  const {
-    todos,
-    onDelete,
-    onComplete,
-    onSearch
-  } = useContext(TodosContext);
+  const { todos, onDelete, onComplete, onSearch } = useContext(TodosContext);
 
   const renderTodos = () => {
-    if(todos.length > 0){
-      return todos.map((todo, index) => 
-        <TodoItem 
-          {...todo} 
-          key={`todo-${index}`} 
+    if (todos.length > 0) {
+      return todos.map((todo, index) => (
+        <TodoItem
+          {...todo}
+          key={`todo-${index}`}
           onDelete={onDelete}
           onComplete={onComplete}
         />
-      );
+      ));
     }
-    return <TodosListSkeleton />
-  }
+    return <TodosListSkeleton />;
+  };
 
   return (
-      <div className="container app">
-        <h2 className="text-center">Todo<strong>App</strong></h2>
-        <TodoCounter todos={todos} />
-        <TodoSearch onSearch={onSearch}/>
-        <TodoList>
-          {renderTodos()}
-        </TodoList>
-      </div>
-  )
+    <div className="container app">
+      <h2 className="text-center">
+        Todo<strong>App</strong>
+      </h2>
+      <TodoCounter todos={todos} />
+      <TodoSearch onSearch={onSearch} />
+      <TodoList>{renderTodos()}</TodoList>
+    </div>
+  );
 }
 
 export default App;

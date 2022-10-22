@@ -1,10 +1,9 @@
-
 h3 {
-    color: var(--orange);
-    margin: 16px 0;
+  color: var(--orange);
+  margin: 16px 0;
 }
 
 h3 strong {
-    color: white;
-    font-size: 1.6rem;
+  color: white;
+  font-size: 1.6rem;
 }
