@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 
 // Components
 import { TodoCounter } from "@/components/TodoCounter";
@@ -8,50 +8,30 @@ import { TodoItem } from "@/components/TodoItem";
 
 import { TodosListSkeleton } from "@/skeletons/TodosListSkeleton";
 
-// Services
-import { TodosService } from "@/services/TodosService";
+import { TodosContext } from "@/store/context";
 
-const todosService = new TodosService();
 
 function App() {
-  const [todos, setTodos] = useState([]);
-
-  const onSearch = (e) => {
-    const query = e.target.value;
-    const results = todosService.search(query);
-    setTodos(results);
-  }
-
-  const onDelete = (text) => {
-    todosService.delete(text);
-    setTodos(todosService.getTodos());
-  }
-
-  const onComplete = (text) => {
-    todosService.toggleCompletedState(text);
-    setTodos(todosService.getTodos());
-  }
+  const {
+    todos,
+    onDelete,
+    onComplete,
+    onSearch
+  } = useContext(TodosContext);
 
   const renderTodos = () => {
     if(todos.length > 0){
       return todos.map((todo, index) => 
-      <TodoItem 
-        {...todo} 
-        key={`todo-${index}`} 
-        onDelete={onDelete}
-        onComplete={onComplete}
-      />)
+        <TodoItem 
+          {...todo} 
+          key={`todo-${index}`} 
+          onDelete={onDelete}
+          onComplete={onComplete}
+        />
+      );
     }
-    return <TodosListSkeleton/>
+    return <TodosListSkeleton />
   }
-
-  useEffect(()=>{
-    const fetchTodos = async () => {
-      const response = await todosService.fetchTodos(1000);
-      setTodos(response);
-    }
-    fetchTodos();
-  }, [])
 
   return (
       <div className="container app">
