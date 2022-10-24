@@ -15,6 +15,7 @@ import { TodosContext } from "@/store/context";
 
 function App() {
   const { 
+    loading,
     todos, 
     onDelete, 
     onComplete, 
@@ -34,7 +35,9 @@ function App() {
         />
       ));
     }
-    return <TodosListSkeleton />;
+    if(!loading){
+      return <p>Add a todo.</p>
+    }
   };
 
   return (
@@ -44,7 +47,12 @@ function App() {
       </h2>
       <TodoCounter todos={todos} />
       <TodoSearch onSearch={onSearch} />
-      <TodoList>{renderTodos()}</TodoList>
+      <TodoList>
+      {!!loading &&
+        <TodosListSkeleton/>
+      }
+        {renderTodos()}
+      </TodoList>
 
       <CreateTodoButton setOpenModal={setOpenModal} />
 

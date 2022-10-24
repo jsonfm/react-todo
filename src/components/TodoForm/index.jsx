@@ -1,18 +1,27 @@
+import { useState, useContext } from "react";
+import { TodosContext } from "@/store/context";
+
 import "./styles.css";
 
 export const TodoForm = () => {
 
+    const [value, setValue] = useState('');
+    const { onAddTodo, setOpenModal } = useContext(TodosContext);
+
     const onCancel = () => {
+        setValue('');
+        setOpenModal(false);
         console.log("on cancel");
     }
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log("on submit");
+        onAddTodo(value);
+        setOpenModal(false);
     }
 
     const onChange = (e) => {
-        console.log("on change");
+        setValue(e.target.value);
     }
 
     return(
@@ -20,8 +29,9 @@ export const TodoForm = () => {
             <label><b>ADD TODO</b></label>
             {/* <hr></hr> */}
             <textarea
-                className="add-todo-text"
+                defaultValue={value}
                 onChange={onChange}
+                className="add-todo-text"
                 placeholder="Do homework, programming, study..."
             />
             <div className="buttons">

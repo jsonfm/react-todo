@@ -28,6 +28,12 @@ export const TodosProvider = ({ children }) => {
     setTodos(todosService.getTodos());
   };
 
+  const onAddTodo = (text) => {
+    todosService.todos = todos;
+    todosService.addTodo(text, true, "TODOS_V1");
+    setTodos(todosService.getTodos());
+  }
+
   return (
     <TodosContext.Provider
       value={{
@@ -37,6 +43,7 @@ export const TodosProvider = ({ children }) => {
         onSearch,
         onDelete,
         onComplete,
+        onAddTodo,
         openModal,
         setOpenModal
       }}

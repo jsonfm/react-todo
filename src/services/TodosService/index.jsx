@@ -64,4 +64,15 @@ export class TodosService {
     return JSON.parse(localTodos);
   }
 
+  addTodo = (text, save=true, key="TODOS_V1") => {
+    const todo = {
+      text,
+      completed: false
+    }
+    this.todos.push(todo);
+    if(save){
+      this.saveLocal(key)
+    }
+  }
+
 }
