@@ -33,14 +33,20 @@ export class TodosService {
     );
   }
 
-  toggleCompletedState = (text) => {
+  toggleCompletedState = (text, save=false, key="TODOS_V1") => {
     const taskIndex = this.findByText(text);
     this.todos[taskIndex].completed = !this.todos[taskIndex].completed;
+    if(save){
+      this.saveLocal(key);
+    }
   }
 
-  delete = (text) => {
+  delete = (text, save=false, key="TODOS_V1") => {
     const taskIndex = this.findByText(text);
     this.todos.splice(taskIndex, 1);
+    if(save) {
+      this.saveLocal(key);
+    }
   }
 
   saveLocal = (key="TODOS_V1") => {

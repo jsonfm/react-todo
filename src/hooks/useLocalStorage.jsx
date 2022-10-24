@@ -1,26 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { TodosService } from "@/services/TodosService";
 
 
 export const useLocalStorage = (key = "TODOS_V1", initialValue = []) => {
 
-    const localItem = localStorage.getItem(key);
-    let parsedItem;
+    const todosService = new TodosService();
+    const [item, setItem] = useState(initialValue);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        const fetchTodos = async () => {
+          try {
+            const response = await todosService.fetchTodos(1000, key);
+            setItem(response);
+            setLoading(false);
+          }catch(error){
+            setError(error);
+          }
+        };
+        fetchTodos();
+    }, []);
 
 
-    if(!localItem){
-        this.saveLocal(key, JSON.stringify(initialValue));
-        parsedItem = initialValue;
-    }else{
-        parsedItem = JSON.parse(localItem);
-    }
-
-    const [ item, setItem ] = useState(parsedItem);
-
-    const saveItem = (newItem) => {
-        const string = JSON.stringify(newItem);
-        localStorage.setItem(key, string);
-        setItem(newItem);
-    }
-
-    return [item, saveItem];
+    return [
+        item, 
+        setItem,
+        loading,
+        error,
+    ];
 }
