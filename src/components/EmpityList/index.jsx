@@ -3,9 +3,9 @@ import "./styles.css";
 
 export const EmpityList = () => {
     return (
-        <div class="empity-list">
+        <div className="empity-list">
             <UilFileTimesAlt/>
-            <p>There aren't Todo(s). <b>Add one</b>.</p>
+            <p><b>Not Found Todos!</b></p>
         </div>
     )
 }

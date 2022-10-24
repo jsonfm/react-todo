@@ -14,12 +14,12 @@ import { TodosListSkeleton } from '@/skeletons/TodosListSkeleton';
 import { TodosContext } from '@/store/context';
 
 function App() {
-  const { loading, todos, onDelete, onComplete, onSearch, openModal, setOpenModal } =
+  const { loading, todos, filtered, onDelete, onComplete, onSearch, openModal, setOpenModal } =
     useContext(TodosContext);
 
   const renderTodos = () => {
-    if (todos.length > 0) {
-      return todos.map((todo, index) => (
+    if (filtered.length > 0) {
+      return filtered.map((todo, index) => (
         <TodoItem {...todo} key={`todo-${index}`} onDelete={onDelete} onComplete={onComplete} />
       ));
     }
@@ -35,7 +35,7 @@ function App() {
       <TodoList>
         {!!loading && <TodosListSkeleton />}
         {renderTodos()}
-        {!loading && todos.length == 0 && <EmpityList/>}
+        {!loading && filtered.length == 0 && <EmpityList/>}
       </TodoList>
 
       <CreateTodoButton setOpenModal={setOpenModal} />

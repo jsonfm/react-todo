@@ -36,10 +36,10 @@ export const TodoForm = () => {
         placeholder="Do homework, programming, study..."
       />
       <div className="buttons">
-        <button type="button" class="button button-orange" onClick={onCancel}>
+        <button type="button" className="button button-orange" onClick={onCancel}>
           Cancel
         </button>
-        <button type="submit" class="button">
+        <button type="submit" className="button">
           Add
         </button>
       </div>
