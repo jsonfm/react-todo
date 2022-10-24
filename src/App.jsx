@@ -11,11 +11,20 @@ import { AddTodoModal } from '@/components/AddTodoModal';
 import { EmpityList } from '@/components/EmpityList';
 import { TodosListSkeleton } from '@/skeletons/TodosListSkeleton';
 
-import { TodosContext } from '@/store/context';
+import { useTodos } from "@/hooks/useTodos";
 
 function App() {
-  const { loading, todos, filtered, onDelete, onComplete, onSearch, openModal, setOpenModal } =
-    useContext(TodosContext);
+  const { 
+    loading, 
+    todos, 
+    filtered, 
+    onDelete, 
+    onComplete, 
+    onSearch, 
+    onAddTodo,
+    openModal, 
+    setOpenModal,
+  } = useTodos();
 
   const renderTodos = () => {
     if (filtered.length > 0) {
@@ -42,7 +51,10 @@ function App() {
 
       {!!openModal && (
         <AddTodoModal>
-          <TodoForm />
+          <TodoForm 
+            onAddTodo={onAddTodo} 
+            setOpenModal={setOpenModal} 
+          />
         </AddTodoModal>
       )}
     </div>

@@ -3,9 +3,8 @@ import { TodosContext } from '@/store/context';
 
 import './styles.css';
 
-export const TodoForm = () => {
+export const TodoForm = ({onAddTodo, setOpenModal}) => {
   const [value, setValue] = useState('');
-  const { onAddTodo, setOpenModal } = useContext(TodosContext);
 
   const onCancel = () => {
     setValue('');
