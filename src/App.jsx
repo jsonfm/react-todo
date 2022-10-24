@@ -5,6 +5,7 @@ import { TodoCounter } from "@/components/TodoCounter";
 import { TodoSearch } from "@/components/TodoSearch";
 import { TodoList } from "@/components/TodoList";
 import { TodoItem } from "@/components/TodoItem";
+import { TodoForm } from "@/components/TodoForm";
 import { CreateTodoButton } from "@/components/CreateTodoButton";
 import { AddTodoModal } from "@/components/AddTodoModal";
 
@@ -49,7 +50,7 @@ function App() {
 
       {!!openModal &&
         <AddTodoModal>
-          <p>Modal</p>
+          <TodoForm/>
         </AddTodoModal>
       }
     </div>
