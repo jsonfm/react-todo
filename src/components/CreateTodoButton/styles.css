@@ -12,6 +12,7 @@
   bottom: 10%;
   cursor: pointer;
   z-index: 100;
+  box-shadow: 0 0 20px 2px var(--orange);
 }
 
 .create-button:hover {

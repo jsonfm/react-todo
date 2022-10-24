@@ -7,7 +7,7 @@ export const CreateTodoButton = ({ setOpenModal }) => {
 
   return (
     <div className="container">
-      <div class="create-button" onClick={onClick}>
+      <div className="create-button" onClick={onClick}>
         +
       </div>
     </div>

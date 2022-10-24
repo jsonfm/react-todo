@@ -8,7 +8,7 @@ import { TodoItem } from '@/components/TodoItem';
 import { TodoForm } from '@/components/TodoForm';
 import { CreateTodoButton } from '@/components/CreateTodoButton';
 import { AddTodoModal } from '@/components/AddTodoModal';
-
+import { EmpityList } from '@/components/EmpityList';
 import { TodosListSkeleton } from '@/skeletons/TodosListSkeleton';
 
 import { TodosContext } from '@/store/context';
@@ -23,9 +23,6 @@ function App() {
         <TodoItem {...todo} key={`todo-${index}`} onDelete={onDelete} onComplete={onComplete} />
       ));
     }
-    if (!loading) {
-      return <p>Add a todo.</p>;
-    }
   };
 
   return (
@@ -38,6 +35,7 @@ function App() {
       <TodoList>
         {!!loading && <TodosListSkeleton />}
         {renderTodos()}
+        {!loading && todos.length == 0 && <EmpityList/>}
       </TodoList>
 
       <CreateTodoButton setOpenModal={setOpenModal} />
