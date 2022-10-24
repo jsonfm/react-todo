@@ -5,13 +5,22 @@ import { TodoCounter } from "@/components/TodoCounter";
 import { TodoSearch } from "@/components/TodoSearch";
 import { TodoList } from "@/components/TodoList";
 import { TodoItem } from "@/components/TodoItem";
+import { CreateTodoButton } from "@/components/CreateTodoButton";
+import { AddTodoModal } from "@/components/AddTodoModal";
 
 import { TodosListSkeleton } from "@/skeletons/TodosListSkeleton";
 
 import { TodosContext } from "@/store/context";
 
 function App() {
-  const { todos, onDelete, onComplete, onSearch } = useContext(TodosContext);
+  const { 
+    todos, 
+    onDelete, 
+    onComplete, 
+    onSearch,
+    openModal,
+    setOpenModal,
+  } = useContext(TodosContext);
 
   const renderTodos = () => {
     if (todos.length > 0) {
@@ -35,6 +44,14 @@ function App() {
       <TodoCounter todos={todos} />
       <TodoSearch onSearch={onSearch} />
       <TodoList>{renderTodos()}</TodoList>
+
+      <CreateTodoButton setOpenModal={setOpenModal} />
+
+      {!!openModal &&
+        <AddTodoModal>
+          <p>Modal</p>
+        </AddTodoModal>
+      }
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { TodosContext } from "./context";
 import { TodosService } from "@/services/TodosService";
 
@@ -7,6 +7,7 @@ import { useLocalStorage } from "@/hooks/useLocalStorage";
 export const TodosProvider = ({ children }) => {
   const todosService = new TodosService();
   const [todos, setTodos, loading, error ] = useLocalStorage("TODOS_V1", []);
+  const [openModal, setOpenModal] = useState(false);
 
   const onSearch = (e) => {
     todosService.todos = todos;
@@ -36,6 +37,8 @@ export const TodosProvider = ({ children }) => {
         onSearch,
         onDelete,
         onComplete,
+        openModal,
+        setOpenModal
       }}
     >
       {children}
