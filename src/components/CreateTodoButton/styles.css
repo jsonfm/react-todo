@@ -1,27 +1,26 @@
-
 .create-button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--orange);
-    display: grid;
-    place-items: center;
-    font-size: 2rem;
-    font-weight: bold;
-    position: fixed;
-    right: 5%;
-    bottom: 10%;
-    cursor: pointer;
-    z-index: 100;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  position: fixed;
+  right: 5%;
+  bottom: 10%;
+  cursor: pointer;
+  z-index: 100;
 }
 
 .create-button:hover {
-    background: white;
-    color: var(--orange);
+  background: white;
+  color: var(--orange);
 }
 
 @media (min-width: 768px) {
-    .create-button {
-        right: calc(50% - 300px);
-    }
+  .create-button {
+    right: calc(50% - 300px);
+  }
 }

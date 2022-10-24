@@ -1,42 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
 // Components
-import { TodoCounter } from "@/components/TodoCounter";
-import { TodoSearch } from "@/components/TodoSearch";
-import { TodoList } from "@/components/TodoList";
-import { TodoItem } from "@/components/TodoItem";
-import { TodoForm } from "@/components/TodoForm";
-import { CreateTodoButton } from "@/components/CreateTodoButton";
-import { AddTodoModal } from "@/components/AddTodoModal";
+import { TodoCounter } from '@/components/TodoCounter';
+import { TodoSearch } from '@/components/TodoSearch';
+import { TodoList } from '@/components/TodoList';
+import { TodoItem } from '@/components/TodoItem';
+import { TodoForm } from '@/components/TodoForm';
+import { CreateTodoButton } from '@/components/CreateTodoButton';
+import { AddTodoModal } from '@/components/AddTodoModal';
 
-import { TodosListSkeleton } from "@/skeletons/TodosListSkeleton";
+import { TodosListSkeleton } from '@/skeletons/TodosListSkeleton';
 
-import { TodosContext } from "@/store/context";
+import { TodosContext } from '@/store/context';
 
 function App() {
-  const { 
-    loading,
-    todos, 
-    onDelete, 
-    onComplete, 
-    onSearch,
-    openModal,
-    setOpenModal,
-  } = useContext(TodosContext);
+  const { loading, todos, onDelete, onComplete, onSearch, openModal, setOpenModal } =
+    useContext(TodosContext);
 
   const renderTodos = () => {
     if (todos.length > 0) {
       return todos.map((todo, index) => (
-        <TodoItem
-          {...todo}
-          key={`todo-${index}`}
-          onDelete={onDelete}
-          onComplete={onComplete}
-        />
+        <TodoItem {...todo} key={`todo-${index}`} onDelete={onDelete} onComplete={onComplete} />
       ));
     }
-    if(!loading){
-      return <p>Add a todo.</p>
+    if (!loading) {
+      return <p>Add a todo.</p>;
     }
   };
 
@@ -48,19 +36,17 @@ function App() {
       <TodoCounter todos={todos} />
       <TodoSearch onSearch={onSearch} />
       <TodoList>
-      {!!loading &&
-        <TodosListSkeleton/>
-      }
+        {!!loading && <TodosListSkeleton />}
         {renderTodos()}
       </TodoList>
 
       <CreateTodoButton setOpenModal={setOpenModal} />
 
-      {!!openModal &&
+      {!!openModal && (
         <AddTodoModal>
-          <TodoForm/>
+          <TodoForm />
         </AddTodoModal>
-      }
+      )}
     </div>
   );
 }

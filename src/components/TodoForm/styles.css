@@ -1,43 +1,42 @@
-
 .add-todo-form {
-    background: white;
-    /* border: 5px solid var(--orange); */
-    padding: 2rem 1.5rem;
-    width: 330px;
-    border-radius: 1px;
-    color: var(--orange);
+  background: white;
+  /* border: 5px solid var(--orange); */
+  padding: 2rem 1.5rem;
+  width: 330px;
+  border-radius: 1px;
+  color: var(--orange);
 }
 
 .add-todo-text {
-    outline: none;
-    border: none;
-    width: 100%;
-    min-height: 120px;
-    outline: none;
-    padding: 1rem 0;
-    margin: 0 auto;
+  outline: none;
+  border: none;
+  width: 100%;
+  min-height: 120px;
+  outline: none;
+  padding: 1rem 0;
+  margin: 0 auto;
 }
 
 .buttons {
-    margin-top: 2rem;
-    padding: 0 2rem;
-    display: flex;
-    justify-content: space-between;
+  margin-top: 2rem;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .buttons .button {
-    outline: none;
-    border: none;
-    cursor: pointer;
-    padding: 1rem 2rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 1rem 2rem;
 }
 
 .button-orange {
-    background: var(--orange);
-    color: white;
+  background: var(--orange);
+  color: white;
 }
 
 .button-orange:hover {
-    background: white;
-    color: var(--orange);
+  background: white;
+  color: var(--orange);
 }

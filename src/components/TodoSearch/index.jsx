@@ -1,5 +1,5 @@
-import "./styles.css";
-import { UilSearch } from "@iconscout/react-unicons";
+import './styles.css';
+import { UilSearch } from '@iconscout/react-unicons';
 
 export const TodoSearch = ({ text, onSearch }) => {
   return (
