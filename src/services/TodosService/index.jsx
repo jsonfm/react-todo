@@ -1,5 +1,5 @@
 export class TodosService {
-  constructor(props) {
+  constructor() {
     this.todos = [];
   }
 
