@@ -17,18 +17,23 @@ export const TodosProvider = ({ children }) => {
   }, []);
 
   const onSearch = (e) => {
+    todosService = todos;
     const query = e.target.value;
     const results = todosService.search(query);
     setTodos(results);
   };
 
   const onDelete = (text) => {
+    todosService = todos;
     todosService.delete(text);
+    todosService.saveLocal("TODOS_V1");
     setTodos(todosService.getTodos());
   };
 
   const onComplete = (text) => {
+    todosService.todos = todos;
     todosService.toggleCompletedState(text);
+    todosService.saveLocal("TODOS_V1");
     setTodos(todosService.getTodos());
   };
 

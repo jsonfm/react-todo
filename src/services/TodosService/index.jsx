@@ -1,57 +1,61 @@
-const todos = [
-  {
-    text: "Aprender Javascript",
-    completed: true,
-  },
-  {
-    text: "Tomar el curso de React",
-    completed: false,
-  },
-  {
-    text: "Diseñar páginar web",
-    completed: true,
-  },
-];
-
 export class TodosService {
-  constructor() {
-    this.todos = todos;
+  constructor(props) {
+    this.todos = [];
   }
 
-  async sleep(ms = 1000) {
+  sleep = async (ms = 1000) => {
     return await new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  async fetchTodos(delay = 1000) {
+  fetchTodos = async(delay = 1000, key="TODOS_V1") =>{
     await this.sleep(delay);
-    return this.todos;
+    this.todos = this.getLocal(key);
+    return this.getTodos();
   }
 
-  getTodos() {
+  getTodos = () => {
     return [...this.todos];
   }
 
-  getCompletedTodos() {
+  getCompletedTodos = () => {
     return this.todos.filter((todo) => todo.completed);
   }
 
-  findByText(text) {
-    return this.todos.findIndex((todo) => todo.text === text);
+  findByText = (text) => {
+    return this.todos.findIndex((todo) => 
+      todo.text.toLowerCase().includes(text.toLowerCase())
+    );
   }
 
-  search(query) {
+  search = (query) => {
     return this.todos.filter(({ text }) =>
       text.toLowerCase().includes(query.toLowerCase())
     );
   }
 
-  toggleCompletedState(text) {
+  toggleCompletedState = (text) => {
     const taskIndex = this.findByText(text);
     this.todos[taskIndex].completed = !this.todos[taskIndex].completed;
   }
 
-  delete(text) {
+  delete = (text) => {
     const taskIndex = this.findByText(text);
     this.todos.splice(taskIndex, 1);
   }
+
+  saveLocal = (key="TODOS_V1") => {
+    const todos = this.todos;
+    const string = JSON.stringify(todos);
+    localStorage.setItem(key, string);
+  }
+
+  getLocal = (key="TODOS_V1") => {
+    const localTodos = localStorage.getItem(key);
+    if(!localTodos){
+      this.saveLocal("TODOS_V1", []);
+      return [];
+    }
+    return JSON.parse(localTodos);
+  }
+
 }
