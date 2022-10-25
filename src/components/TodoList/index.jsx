@@ -1,10 +1,22 @@
 import './styles.css';
 
-export const TodoList = ({ children }) => {
+export const TodoList = ({ 
+  error,
+  loading, 
+  filtered,
+  onLoading,
+  onError,
+  onEmpity,
+  render,
+}) => {
   return (
     <>
-      {/* <h4>Your tasks:</h4> */}
-      <div className="todo-list">{children}</div>
+      <div className="todo-list">
+        {error && onError()}
+        {loading && onLoading()}
+        {(!loading && filtered.length == 0) && onEmpity()} 
+        {filtered.map(render)}
+      </div>
     </>
   );
 };

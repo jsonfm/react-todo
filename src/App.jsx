@@ -15,6 +15,7 @@ import { useTodos } from "@/hooks/useTodos";
 
 function App() {
   const { 
+    error,
     loading, 
     todos, 
     filtered, 
@@ -26,14 +27,6 @@ function App() {
     setOpenModal,
   } = useTodos();
 
-  const renderTodos = () => {
-    if (filtered.length > 0) {
-      return filtered.map((todo, index) => (
-        <TodoItem {...todo} key={`todo-${index}`} onDelete={onDelete} onComplete={onComplete} />
-      ));
-    }
-  };
-
   return (
     <div className="container app">
       <h2 className="text-center">
@@ -41,11 +34,22 @@ function App() {
       </h2>
       <TodoCounter todos={todos} />
       <TodoSearch onSearch={onSearch} />
-      <TodoList>
-        {!!loading && <TodosListSkeleton />}
-        {renderTodos()}
-        {!loading && filtered.length == 0 && <EmpityList/>}
-      </TodoList>
+      <TodoList
+        error={error}
+        loading={loading}
+        filtered={filtered}
+        onError={() => <p>Error</p>}
+        onLoading={() => <TodosListSkeleton />}
+        onEmpity={() => <EmpityList/>}
+        render={(todo, index) => (
+          <TodoItem
+            {...todo} 
+            key={`todo-${index}`} 
+            onDelete={onDelete}
+            onComplete={onComplete}
+          />
+        )}
+      />
 
       <CreateTodoButton setOpenModal={setOpenModal} />
 
