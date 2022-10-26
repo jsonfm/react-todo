@@ -13,6 +13,9 @@ import { TodosListSkeleton } from '@/skeletons/TodosListSkeleton';
 
 import { useTodos } from "@/hooks/useTodos";
 
+import { StorageAlertWithListener } from "@/components/StorageAlert";
+
+
 function App() {
   const { 
     error,
@@ -25,6 +28,7 @@ function App() {
     onAddTodo,
     openModal, 
     setOpenModal,
+    sincronizeTodos,
   } = useTodos();
 
   return (
@@ -32,8 +36,8 @@ function App() {
       <h2 className="text-center">
         Todo<strong>App</strong>
       </h2>
-      <TodoCounter todos={todos} />
-      <TodoSearch onSearch={onSearch} />
+      <TodoCounter todos={todos} loading={loading} />
+      <TodoSearch onSearch={onSearch} loading={loading} />
       <TodoList
         error={error}
         loading={loading}
@@ -61,6 +65,10 @@ function App() {
           />
         </AddTodoModal>
       )}
+
+      <StorageAlertWithListener
+        sincronize={sincronizeTodos}
+      />
     </div>
   );
 }

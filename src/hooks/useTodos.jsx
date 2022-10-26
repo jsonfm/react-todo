@@ -5,18 +5,19 @@ import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 export const useTodos = () => {
   const todosService = new TodosService();
-  const [todos, setTodos, loading, error] = useLocalStorage('TODOS_V1', []);
+  const {item:todos, setItem:setTodos, loading, error, sincronizeItem: sincronizeTodos} = useLocalStorage('TODOS_V1', []);
   const [openModal, setOpenModal] = useState(false);
   const [searchValue, setSearchValue] = useState('');
 
   let filtered = [];
+
   if(!searchValue.length >= 1){
     filtered = todos;
   }else {
     todosService.todos = todos;
     filtered = todosService.search(searchValue);
   }
-
+  
   const onSearch = (e) => {
     todosService.todos = todos;
     const query = e.target.value;
@@ -52,7 +53,8 @@ export const useTodos = () => {
         onComplete,
         onAddTodo,
         openModal,
-        setOpenModal
+        setOpenModal,
+        sincronizeTodos,
       }
   );
 };

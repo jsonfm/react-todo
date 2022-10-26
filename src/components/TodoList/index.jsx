@@ -14,8 +14,8 @@ export const TodoList = ({
       <div className="todo-list">
         {error && onError()}
         {loading && onLoading()}
-        {(!loading && filtered.length == 0) && onEmpity()} 
-        {filtered.map(render)}
+        {(!loading && filtered?.length == 0) && onEmpity()} 
+        {(!loading && !error) && filtered?.map(render)}
       </div>
     </>
   );
